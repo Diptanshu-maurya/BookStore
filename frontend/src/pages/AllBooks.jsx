@@ -1,0 +1,46 @@
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import BookCard from '../components/BookCard';
+import { FaArrowRightLong } from "react-icons/fa6";
+import Loader from '../components/Loader';
+
+function AllBooks() {
+  const [data,setData]=useState();
+
+
+    useEffect(()=>{
+
+      async function getData(){
+         const response=await axios.get("http://localhost:1000/api/v1/get-all-books/");
+        // console.log(response.data);
+         setData(response.data.data);
+      }
+
+      getData();
+
+
+    },[])
+
+
+  return (
+    
+    <div className='bg-zinc-700 p-4'>
+      <span className='text-xl font-bold text-gray-100 tracking-wide '>
+        All BOOKS:
+      </span>
+      {!data && <div className='flex items-center justify-center my-5'>
+        <Loader></Loader>
+       </div>}
+      <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4'>
+       {data && data.map((bookData,i)=>(
+        <div key={i}>
+          <BookCard bookData={bookData}></BookCard>
+        </div>
+        
+       ))}
+       </div>
+    </div>
+  )
+}
+
+export default AllBooks
