@@ -5,13 +5,14 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Loader from '../components/Loader';
 
 function AllBooks() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [data,setData]=useState();
 
 
     useEffect(()=>{
 
       async function getData(){
-         const response=await axios.get("http://localhost:1000/api/v1/get-all-books/");
+         const response=await axios.get(`${API_URL}/api/v1/get-all-books/`);
         // console.log(response.data);
          setData(response.data.data);
       }

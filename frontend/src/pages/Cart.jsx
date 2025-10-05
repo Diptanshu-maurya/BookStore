@@ -4,6 +4,7 @@ import BookCard from '../components/BookCard';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const nav = useNavigate();
@@ -16,7 +17,7 @@ function Cart() {
   useEffect(() => {
     async function getFav() {
       try {
-        const response = await axios.get("http://localhost:1000/api/v1/get-user-cart/", { headers });
+        const response = await axios.get(`${API_URL}/api/v1/get-user-cart/`, { headers });
         setData(response.data.data);
       } catch (error) {
         console.error("Error fetching cart:", error);

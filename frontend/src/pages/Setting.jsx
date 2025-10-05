@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Setting() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [address, setAddress] = useState("");
 
   const headers = {
@@ -13,7 +14,7 @@ function Setting() {
     async function getData() {
       try {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/get-user-information",
+          `${API_URL}/api/v1/get-user-information`,
           { headers }
         );
         setAddress(response.data.data.address || ""); // Prevents null issues

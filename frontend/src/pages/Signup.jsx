@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Signup() {
+    const API_URL = import.meta.env.VITE_API_URL;
 
     
     const [username,setUsername]=useState('');
@@ -22,7 +23,7 @@ function Signup() {
                 alert("All fields are required");
             }else{
 
-                const response= await axios.post("http://localhost:1000/api/v1/sign-up",
+                const response= await axios.post(`${API_URL}/api/v1/sign-up`,
                     {username,email,password,address}
                 );
              //   console.log(response);

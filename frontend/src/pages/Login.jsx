@@ -8,6 +8,7 @@ import  {useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const API_URL = import.meta.env.VITE_API_URL;
 
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
@@ -21,7 +22,7 @@ function Login() {
         if(username=='' || password==''){
             alert("All fields are required");
         }else{
-            const response=await axios.post("http://localhost:1000/api/v1/sign-in",{username,password})
+            const response=await axios.post(`${API_URL}/api/v1/sign-in`,{username,password})
 
             console.log(response)
             

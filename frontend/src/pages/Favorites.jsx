@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 
 function Favorites() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ function Favorites() {
           authorization: `Bearer ${localStorage.getItem("token")}`,
         };
 
-        const response = await axios.get("http://localhost:1000/api/v1/get-fav-books/", { headers });
+        const response = await axios.get(`${API_URL}/api/v1/get-fav-books/`, { headers });
         setData(response.data.data);
       } catch (error) {
         console.error("Error fetching favorites:", error);

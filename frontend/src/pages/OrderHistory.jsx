@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 
 function OrderHistory() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [orderHistory, setOrderHistory] = useState(null);
 
   const headers = {
@@ -15,7 +16,7 @@ function OrderHistory() {
     async function fetch() {
       try {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/get-order-history",
+          `${API_URL}/api/v1/get-order-history`,
           { headers }
         );
         setOrderHistory(response.data.data);

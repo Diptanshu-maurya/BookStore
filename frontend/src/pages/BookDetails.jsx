@@ -19,6 +19,7 @@ import { MdDelete } from "react-icons/md";
 
 
 function BookDetails() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const {id}=useParams();
   const [bookData,setBookData]=useState();
   const isLoggedIn= useSelector((state)=> state.auth.isLoggedIn);
@@ -29,7 +30,7 @@ function BookDetails() {
   useEffect(()=>{
 
      async function getData(){
-      const response=await axios.get(`http://localhost:1000/api/v1/get-book-by-id/${id}`)
+      const response=await axios.get(`${API_URL}/api/v1/get-book-by-id/${id}`)
       console.log(response.data.data.author);
       setBookData(response.data.data);
     }

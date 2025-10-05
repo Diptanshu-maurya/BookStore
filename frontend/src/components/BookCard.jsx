@@ -3,6 +3,7 @@ import  {Link}  from "react-router-dom";
 import axios from 'axios';
 
 function BookCard({bookData,fav,Cart}) {
+  const API_URL = import.meta.env.VITE_API_URL;
  // console.log("bookData",bookData);
   const headers = {
     id: localStorage.getItem("id"),
@@ -12,7 +13,7 @@ function BookCard({bookData,fav,Cart}) {
 
    async function handleFav(){
 
-    const response=await axios.put("http://localhost:1000/api/v1/remove-book-from-fav/",{},{headers});
+    const response=await axios.put(`${API_URL}/api/v1/remove-book-from-fav/`,{},{headers});
 
     alert(response.data.message)
     
