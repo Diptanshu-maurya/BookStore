@@ -22,7 +22,7 @@ function BookCard({bookData,fav,Cart}) {
    }
    async function handleRemoveCart(){
 
-    const response=await axios.put("http://localhost:1000/api/v1/remove-to-cart/"+bookData._id,{},{headers});
+    const response=await axios.put(`${API_URL}/api/v1/remove-to-cart/`+bookData._id,{},{headers});
 
     alert(response.data.message)
     
