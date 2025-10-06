@@ -6,7 +6,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 
 function Profile() {
-  const API_URL = import.meta.env.VITE_API_URL;
+   const API_URL = import.meta.env.VITE_API_URL;
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const headers = {
     id: localStorage.getItem("id"),

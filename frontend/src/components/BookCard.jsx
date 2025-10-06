@@ -3,7 +3,7 @@ import  {Link}  from "react-router-dom";
 import axios from 'axios';
 
 function BookCard({bookData,fav,Cart}) {
-  const API_URL = import.meta.env.VITE_API_URL;
+   const API_URL = import.meta.env.VITE_API_URL;
  // console.log("bookData",bookData);
   const headers = {
     id: localStorage.getItem("id"),
@@ -46,7 +46,7 @@ function BookCard({bookData,fav,Cart}) {
 
        <div className='bg-zinc-700 rounded flex items-center justify-center'>
 
-        <img src="img2.jpg" alt="img" className='h-[25vh] rounded '/>
+        <img src={`${bookData.url}`} alt="img" className='h-[25vh] rounded '/>
        </div>
 
        <h4 className='text-white mt-2 text-xl'> {bookData.title}  </h4>

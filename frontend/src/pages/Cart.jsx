@@ -4,7 +4,7 @@ import BookCard from '../components/BookCard';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
-  const API_URL = import.meta.env.VITE_API_URL;
+   const API_URL = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const nav = useNavigate();
@@ -36,7 +36,7 @@ function Cart() {
   async function handlePlaceOrder() {
     try {
       const response = await axios.post(
-        "http://localhost:1000/api/v1/place-order/",
+        `${API_URL}/api/v1/place-order/`,
         { order: data },
         { headers }
       );

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 
 function Favorites() {
-  const API_URL = import.meta.env.VITE_API_URL;
+   const API_URL = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]);
 
   useEffect(() => {

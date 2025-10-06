@@ -107,6 +107,48 @@ router.put("/update-address",authenticateToken,async(req,res)=>{
 
 })
 
+router.post("/sign-up-admin",async (req,res)=>{
+  try {
+    const {username,email,password,address}=req.body;
+
+    //check username length is more than 4
+    if(username.length<4){
+      return res.status(400).json({message:"Username length should be greater than 3"})
+    }
+
+    // username already exists
+    const existingUserName=await User.findOne({username:username});
+    if(existingUserName){
+      return res.status(400).json({message:"Username already exists"});
+    }
+    const existingEmail=await User.findOne({email:email});
+    if(existingEmail){
+      return res.status(400).json({message:"Email already exists"});
+    }
+    //check password length
+    if(password.length<=5){
+      return res.status(400).json({message:"Password length should be grater than 5 "});
+    }
+    const hashPass= await bcrypt.hash(password,10);
+
+    const newUser=new User({
+      username:username,
+      email:email,
+      password:hashPass,
+      address:address,
+      role:'admin'
+    });
+    await newUser.save();
+    return  res.status(200).json({message:"sign up succesfully"});
+    
+
+
+    
+  } catch (error) {
+       res.status(500).json({message:"Internal server error"});
+  }
+});
+
 
 
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Setting() {
-  const API_URL = import.meta.env.VITE_API_URL;
+   const API_URL = import.meta.env.VITE_API_URL;
   const [address, setAddress] = useState("");
 
   const headers = {
@@ -33,7 +33,7 @@ function Setting() {
 
     try {
       const response = await axios.put(
-        "http://localhost:1000/api/v1/update-address/",
+        `${API_URL}/api/v1/update-address/`,
         { address },
         { headers }
       );

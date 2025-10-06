@@ -16,6 +16,9 @@ import Favorites from "./pages/Favorites";
 import OrderHistory from "./pages/OrderHistory";
 import Setting from "./pages/Setting";
 import Cart from "./pages/Cart";
+import AddBook from "./pages/AddBook";
+import AllOrderHistory from "./pages/AllOrderHistory";
+import EditBook from "./pages/EditBook";
 function App() {
   const dispatch = useDispatch();
   const role = useSelector((state) => state.auth.role);
@@ -39,12 +42,19 @@ function App() {
         <Route path="/About" element={<About />}></Route>
         <Route path="/AllBooks" element={<AllBooks />}></Route>
         <Route path="/Cart" element={<Cart />}></Route>
+        <Route path="/edit-book/:id" element={<EditBook />}></Route>
         <Route path="/Book-details/:id" element={<BookDetails />} />
         <Route path="/Profile" element={<Profile />}>
           <Route index  element={<Favorites />}></Route>
           <Route  path="Favorites" element={<Favorites />}></Route>
           <Route path="OrderHistory" element={<OrderHistory />}></Route>
           <Route path="Setting" element={<Setting />}></Route>
+        </Route>
+        <Route path="/Admin-Profile" element={<Profile />}>
+          <Route index  element={<AddBook />}></Route>
+          <Route  path="AddBook" element={<AddBook />}></Route>
+          <Route path="AllOrderHistory" element={<AllOrderHistory />}></Route>
+          
         </Route>
 
         <Route path="/Signup" element={<Signup />}></Route>

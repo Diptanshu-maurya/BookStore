@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
  const isLoggedIn= useSelector((state)=> state.auth.isLoggedIn);
+ const role= useSelector((state)=> state.auth.role);
  console.log("isLoggedIn",isLoggedIn)
 
   return (
@@ -39,7 +40,8 @@ function Navbar() {
         <div className="hidden md:flex items-center justify-evenly gap-4 text-md">
           <Link to="/">Home</Link>
           <Link to="/AllBooks">All Books</Link>
-        {isLoggedIn==true &&   <Link to="/Profile">Profile</Link>}
+        {isLoggedIn==true && role=="user" && <Link to="/Profile"> Profile</Link> }
+        {isLoggedIn==true && role=="admin" && <Link to="/Admin-Profile"> Admin-Profile</Link> }
         {isLoggedIn==true &&    <Link to="/Cart">Cart</Link>}
 
         {isLoggedIn==false && <>
@@ -63,7 +65,8 @@ function Navbar() {
        
 
         <Link to="/AllBooks" className="block py-2">All Books</Link>
-        <Link to="/Profile" className="block py-2">Profile</Link>
+        {isLoggedIn==true && role=="user" && <Link to="/Profile"> Profile</Link> }
+        {isLoggedIn==true && role=="admin" && <Link to="/Admin-Profile"> Admin-Profile</Link> }
         <Link to="/Cart" className="block py-2">Cart</Link>
 
         {isLoggedIn==false && <>
